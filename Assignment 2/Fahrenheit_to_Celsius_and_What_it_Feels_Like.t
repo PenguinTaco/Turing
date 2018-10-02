@@ -5,7 +5,7 @@ put "What is the temperature in fahrenheit"
 get f
 cls
 put "Temperature in Celsius"
-put (f - 32)/1.8
+put (f - 32)/1.8:0:1
 if (f - 32)/1.8 > 40 then
     put "boiling"
 elsif (f - 32)/1.8 > 30 then
