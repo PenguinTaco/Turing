@@ -4,7 +4,6 @@ var a : int
 var b : int
 var c : int
 
-procedure getNumbers
     put "Starting Number"
     get a
     put "Ending Number"
@@ -12,9 +11,6 @@ procedure getNumbers
     put "Interval to Count by"
     get c
     cls
-end getNumbers
-
-getNumbers
 
 if a = b or c > b then
     put "The Numbers you Entered are Invalid"
