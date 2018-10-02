@@ -31,7 +31,11 @@ elsif numbers (2) < numbers (1) then
     end for
 end if
 
-put "Sum of Numbers"
-put sum
-put "Average of Numbers"
-put sum / total_numbers
+if numbers (1) = numbers (2) then
+    put "The Numbers you Entered are Invalid"
+else
+    put "Sum of Numbers"
+    put sum
+    put "Average of Numbers"
+    put sum / total_numbers
+end if
