@@ -12,7 +12,7 @@ var c : int
     get c
     cls
 
-if a = b or c > b then
+if a = b then
     put "The Numbers you Entered are Invalid"
 elsif a < b then
     for count : a .. b by c
