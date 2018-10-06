@@ -6,9 +6,11 @@ var total_marks_int : int
 var mark : string
 var i : int
 var j : int
+var ext : int
 
 i := 1
 j := 1
+ext := 0
 
 loop
     loop
@@ -39,7 +41,7 @@ loop
 
     loop
 
-	if j = 999 then
+	if ext = 1 then
 	    exit
 	end if
 	if i = 51 then
@@ -59,7 +61,7 @@ loop
 		if total_marks_int = 6 then
 		    loop
 			if (j - 1) = total_marks_int then
-			    j := 999
+			    ext := 1
 			    exit
 			end if
 			put "Please enter the test ", j, " for student ", students (i, 1), " as a number between 0 to 100."
@@ -83,7 +85,7 @@ loop
 		elsif total_marks_int = 5 then
 		    loop
 			if (j - 1) = total_marks_int then
-			    j := 999
+			    ext := 1
 			    exit
 			end if
 			put "Please enter the test ", j, " for student ", students (i, 1), " as a number between 0 to 100."
@@ -107,7 +109,7 @@ loop
 		elsif total_marks_int = 4 then
 		    loop
 			if (j - 1) = total_marks_int then
-			    j := 999
+			    ext := 1
 			    exit
 			end if
 			put "Please enter the test ", j, " for student ", students (i, 1), " as a number between 0 to 100."
@@ -131,7 +133,7 @@ loop
 		elsif total_marks_int = 3 then
 		    loop
 			if (j - 1) = total_marks_int then
-			    j := 999
+			    ext := 1
 			    exit
 			end if
 			put "Please enter the test ", j, " for student ", students (i, 1), " as a number between 0 to 100."
@@ -155,7 +157,7 @@ loop
 		elsif total_marks_int = 2 then
 		    loop
 			if (j - 1) = total_marks_int then
-			    j := 999
+			    ext := 1
 			    exit
 			end if
 			put "Please enter the test ", j, " for student ", students (i, 1), " as a number between 0 to 100."
@@ -179,7 +181,7 @@ loop
 		elsif total_marks_int = 1 then
 		    loop
 			if (j - 1) = total_marks_int then
-			    j := 999
+			    ext := 1
 			    exit
 			end if
 			put "Please enter the test ", j, " for student ", students (i, 1), " as a number between 0 to 100."
@@ -210,6 +212,7 @@ loop
 
     end loop
     
+    ext := 0
     j := 1
 
     if i = 51 then
@@ -220,5 +223,7 @@ loop
     if students (i, j) = 9999999 then
 	exit
     end if
+    
+    i := i + 1
 
 end loop
