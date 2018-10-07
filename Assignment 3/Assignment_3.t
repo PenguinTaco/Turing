@@ -1,16 +1,85 @@
+%***********************************************************************%
+%                                                                       %
+%                          PROGRAM HEADER                               %
+%***********************************************************************%
+%***********************************************************************%
+%                                                                       %
+% PROGRAMMER'S NAME:    Anthony                                         %
+%                                                                       %
+% DATE:                 Sunday, October 06, 2018                        %
+%                                                                       %
+% PROGRAM NAME:         Student Marks and Average                       %
+%                                                                       %
+% CLASS:                TEJ3M1-04                                       %
+%                                                                       %
+% ASSIGNMENT:           Assignment #3                                   %
+%                                                                       %
+% TEACHER:              Mr. Henrich                                     %
+%                                                                       %
+% DUE DATE:             Thursday, October 11, 2018                      %
+%                                                                       %
+%***********************************************************************%
+%                                                                       %
+% WHAT THE PROGRAM DOES                                                 %
+%                                                                       %
+% This program asks for a student number (up to 50) and then asks for a %
+% total number of test then asks for marks for that many tests once done%
+% the program will calculate a average for that student and will repeat %
+% until 50 students are entered or "9999999" is entered as a student    %
+% number as a exit command. The program will display a table with all   %
+% the information that was entered.                                     %
+%***********************************************************************%
+%                                                                       %
+% PROCEDURES                                                            %
+%                                                                       %
+% One procedure is used within this program:                            %
+% clearScreen:    This procedure is used to provide the user with a     %
+%                 prompt to alert the user that the screen is about to  %
+%                 be cleared.                                           %
+%***********************************************************************%
+%                                                                       %
+% ERROR HANDLING                                                        %
+%                                                                       %
+% This program uses error handling routines, such as strintok, length   %
+% and loops to check if the numbers inputed are within the acceptable   %
+% range.                                                                %
+%***********************************************************************%
+%                                                                       %
+% PROGRAM LIMITATIONS                                                   %
+%                                                                       %
+% Needs alot of error checks to not randomly crash.                     %
+%***********************************************************************%
+%                                                                       %
+% EXTENSIONS AND IMPROVEMENTS                                           %
+% This program could be improved in a variety of ways:                  %
+% 1. Add comments                                                       %
+% 2. Optimize Code                                                      %
+%***********************************************************************%
+
 var students : array 1 .. 50, 1 .. 7 of int
 var average : array 1 .. 50 of int
+var sum : int
 var student : string
 var total_marks_string : string
 var total_marks_int : int
 var mark : string
+var mark_int : int
 var i : int
 var j : int
 var ext : int
 
+procedure clearScreen
+    var ch : string (1)
+    put "Please press ENTER to clear screen"
+    getch (ch)
+    cls
+end clearScreen
+
 i := 1
 j := 1
 ext := 0
+sum := 0
+average (i) := 0
 
 loop
     loop
@@ -68,6 +137,7 @@ loop
 		    if strintok (mark) = true then
 			j := j + 1
 			students (i, j) := strint (mark)
+			mark_int := strint (mark)
 			if students (i, j) < 0 then
 			    put "Your value of ", students (i, j), " was not between 0 to 100"
 			    j := j - 1
@@ -75,7 +145,9 @@ loop
 			    put "Your value of ", students (i, j), " was not between 0 to 100"
 			    j := j - 1
 			else
-			    students (i, j) := strint (mark)
+			    for e : mark_int .. mark_int
+				sum := sum + e
+			    end for
 			end if
 		    elsif strintok (mark) = false then
 			put "You must enter a number between 0 to 100"
@@ -111,5 +183,7 @@ loop
     end if
 
     i := i + 1
+
+    clearScreen
 
 end loop
