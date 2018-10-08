@@ -82,15 +82,13 @@ sum := 0
 average (i) := 0
 
 loop
-    loop
 
+    loop
 	if i = 51 then
 	    exit
 	end if
-
 	put "Please enter a 7 digit student number. Type in 9999999 to quit."
 	get student
-
 	if strintok (student) = true then
 	    students (i, j) := strint (student)
 	    if students (i, j) = 9999999 then
@@ -103,20 +101,16 @@ loop
 	    end if
 	elsif strintok (student) = false then
 	    put student, " is not a valid student number."
-
 	end if
-
     end loop
-
+    
     loop
-
 	if ext = 1 then
 	    exit
 	end if
 	if i = 51 then
 	    exit
 	end if
-
 	if students (i, j) = 9999999 then
 	    exit
 	end if
@@ -127,6 +121,7 @@ loop
 	    if total_marks_int <= 0 then
 		put "You must enter a number between 1 to 6"
 	    elsif total_marks_int <= 6 then
+	    
 		loop
 		    if (j - 1) = total_marks_int then
 			ext := 1
@@ -153,13 +148,13 @@ loop
 			put "You must enter a number between 0 to 100"
 		    end if
 		end loop
+		
 	    else
 		put "You cannot enter more than six test marks"
 	    end if
 	elsif strintok (total_marks_string) = false then
 	    put "You must enter a number between 1 to 6"
 	end if
-
     end loop
 
     loop
