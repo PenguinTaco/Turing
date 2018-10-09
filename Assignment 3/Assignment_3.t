@@ -103,7 +103,7 @@ loop
 	    put student, " is not a valid student number."
 	end if
     end loop
-    
+
     loop
 	if ext = 1 then
 	    exit
@@ -121,7 +121,7 @@ loop
 	    if total_marks_int <= 0 then
 		put "You must enter a number between 1 to 6"
 	    elsif total_marks_int <= 6 then
-	    
+
 		loop
 		    if (j - 1) = total_marks_int then
 			ext := 1
@@ -148,7 +148,7 @@ loop
 			put "You must enter a number between 0 to 100"
 		    end if
 		end loop
-		
+
 	    else
 		put "You cannot enter more than six test marks"
 	    end if
@@ -158,6 +158,16 @@ loop
     end loop
 
     loop
+
+	if i = 51 then
+	    i := i - 1
+	    exit
+	end if
+
+	if students (i, j) = 9999999 then
+	    exit
+	end if
+
 	j := j + 1
 	if j = 8 then
 	    exit
