@@ -67,6 +67,7 @@ var change_mark : string % Error Checking
 var change_mark_int : int % Used to Know which test mark to change
 var i : int % Counter
 var j : int % Counter
+var d : int % Counter
 var ext : int % Exit Flag
 
 procedure clearScreen
@@ -106,8 +107,10 @@ loop
 		else
 		    put "The student number must be 7 digits long. Type 0's at the beginning if necessary"
 		end if
-	    else
+	    elsif students (i, j) < 0 then
 		put "The student number must be a positive number"
+	    else
+		put "The student number must not contain only 0's"
 	    end if
 	elsif strintok (student (i)) = false then
 	    put student (i), " is not a valid student number."
@@ -130,34 +133,38 @@ loop
 		    if ext = 2 then
 			exit
 		    end if
+		    if ext = 3 then
+			exit
+		    end if
 		    if students (i, 1) = students (e, 1) then
-			i := e
-			put "Which test mark do you want to change for student: ", student (i)
+			d := e
+			put "Which test mark do you want to change for student: ", student (d)
 			get change_mark
 			if strintok (change_mark) = true then
 			    change_mark_int := strint (change_mark)
 			    j := change_mark_int
-			    if change_mark_int > total_marks_int (i) then
-				total_marks_int (i) := total_marks_int (i) + 1
+			    if change_mark_int > total_marks_int (d) then
+				total_marks_int (d) := total_marks_int (d) + 1
 			    end if
 			    if j <= 0 then
 				put "You must enter a number between 1 to 6"
 			    elsif j <= 6 then
 				j := j + 1
-				put "Please enter the test ", j - 1, " for student ", student (i), " as a number between 0 to 100."
+				put "Please enter the test ", j - 1, " for student ", student (d), " as a number between 0 to 100."
 				get mark
 				if strintok (mark) = true then
-				    students (i, j) := strint (mark)
+				    students (d, j) := strint (mark)
 				    mark_int := strint (mark)
-				    if students (i, j) < 0 then
-					put "Your value of ", students (i, j), " was not between 0 to 100"
-				    elsif students (i, j) > 100 then
-					put "Your value of ", students (i, j), " was not between 0 to 100"
+				    if students (d, j) < 0 then
+					put "Your value of ", students (d, j), " was not between 0 to 100"
+				    elsif students (d, j) > 100 then
+					put "Your value of ", students (d, j), " was not between 0 to 100"
 				    else
 					for o : mark_int .. mark_int
-					    sum (i) := sum (i) + o
+					    sum (d) := sum (d) + o
 					    ext := 2
 					    total_students := total_students - 1
+					    i := i - 1
 					end for
 				    end if
 				elsif strintok (mark) = false then
@@ -168,7 +175,7 @@ loop
 			    end if
 			end if
 		    else
-			exit
+			ext := 3
 		    end if
 		end loop
 	    end for
@@ -177,34 +184,38 @@ loop
 		if ext = 2 then
 		    exit
 		end if
+		if ext = 3 then
+		    exit
+		end if
 		if students (1, 1) = students (2, 1) then
-		    i := 1
-		    put "Which test mark do you want to change for student: ", student (i)
+		    d := 1
+		    put "Which test mark do you want to change for student: ", student (d)
 		    get change_mark
 		    if strintok (change_mark) = true then
 			change_mark_int := strint (change_mark)
 			j := change_mark_int
-			if change_mark_int > total_marks_int (i) then
-			    total_marks_int (i) := total_marks_int (i) + 1
+			if change_mark_int > total_marks_int (d) then
+			    total_marks_int (d) := total_marks_int (d) + 1
 			end if
 			if j <= 0 then
 			    put "You must enter a number between 1 to 6"
 			elsif j <= 6 then
 			    j := j + 1
-			    put "Please enter the test ", j - 1, " for student ", student (i), " as a number between 0 to 100."
+			    put "Please enter the test ", j - 1, " for student ", student (d), " as a number between 0 to 100."
 			    get mark
 			    if strintok (mark) = true then
-				students (i, j) := strint (mark)
+				students (d, j) := strint (mark)
 				mark_int := strint (mark)
-				if students (i, j) < 0 then
-				    put "Your value of ", students (i, j), " was not between 0 to 100"
-				elsif students (i, j) > 100 then
-				    put "Your value of ", students (i, j), " was not between 0 to 100"
+				if students (d, j) < 0 then
+				    put "Your value of ", students (d, j), " was not between 0 to 100"
+				elsif students (d, j) > 100 then
+				    put "Your value of ", students (d, j), " was not between 0 to 100"
 				else
 				    for o : mark_int .. mark_int
-					sum (i) := sum (i) + o
+					sum (d) := sum (d) + o
 					ext := 2
 					total_students := total_students - 1
+					i := i - 1
 				    end for
 				end if
 			    elsif strintok (mark) = false then
@@ -215,53 +226,59 @@ loop
 			end if
 		    end if
 		else
-		    exit
+		    ext := 3
 		end if
 	    end loop
-	else
-	    put "Please enter the number of test marks for student: ", student (i)
-	    get total_marks_string
-	    if strintok (total_marks_string) = true then
-		total_marks_int (i) := strint (total_marks_string)
-		if total_marks_int (i) <= 0 then
-		    put "You must enter a number between 1 to 6"
-		elsif total_marks_int (i) <= 6 then
-		    loop
-			if (j - 1) = total_marks_int (i) then
-			    ext := 1
-			    exit
-			end if
-			put "Please enter the test ", j, " for student ", student (i), " as a number between 0 to 100."
-			get mark
-			if strintok (mark) = true then
-			    j := j + 1
-			    students (i, j) := strint (mark)
-			    mark_int := strint (mark)
-			    if students (i, j) < 0 then
-				put "Your value of ", students (i, j), " was not between 0 to 100"
-				j := j - 1
-			    elsif students (i, j) > 100 then
-				put "Your value of ", students (i, j), " was not between 0 to 100"
-				j := j - 1
-			    else
-				for e : mark_int .. mark_int
-				    sum (i) := sum (i) + e
-				end for
-			    end if
-			elsif strintok (mark) = false then
-			    put "You must enter a number between 0 to 100"
-			end if
-		    end loop
-		else
-		    put "You cannot enter more than six test marks"
-		end if
-	    elsif strintok (total_marks_string) = false then
+	end if
+	if ext = 2 then
+	    exit
+	end if
+	put "Please enter the number of test marks for student: ", student (i)
+	get total_marks_string
+	if strintok (total_marks_string) = true then
+	    total_marks_int (i) := strint (total_marks_string)
+	    if total_marks_int (i) <= 0 then
 		put "You must enter a number between 1 to 6"
+	    elsif total_marks_int (i) <= 6 then
+		loop
+		    if (j - 1) = total_marks_int (i) then
+			ext := 1
+			exit
+		    end if
+		    put "Please enter the test ", j, " for student ", student (i), " as a number between 0 to 100."
+		    get mark
+		    if strintok (mark) = true then
+			j := j + 1
+			students (i, j) := strint (mark)
+			mark_int := strint (mark)
+			if students (i, j) < 0 then
+			    put "Your value of ", students (i, j), " was not between 0 to 100"
+			    j := j - 1
+			elsif students (i, j) > 100 then
+			    put "Your value of ", students (i, j), " was not between 0 to 100"
+			    j := j - 1
+			else
+			    for e : mark_int .. mark_int
+				sum (i) := sum (i) + e
+			    end for
+			end if
+		    elsif strintok (mark) = false then
+			put "You must enter a number between 0 to 100"
+		    end if
+		end loop
+	    else
+		put "You cannot enter more than six test marks"
 	    end if
+	elsif strintok (total_marks_string) = false then
+	    put "You must enter a number between 1 to 6"
 	end if
     end loop
 
     if ext = 1 then
+	ext := 0
+    end if
+
+    if ext = 3 then
 	ext := 0
     end if
 
