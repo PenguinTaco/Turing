@@ -70,12 +70,14 @@ var j : int % Counter
 var d : int % Counter
 var ext : int % Exit Flag
 
+% Setting up Procedure to Prompt When the Screen Would be Cleared
 procedure clearScreen
     var ch : string (1)
     put "Please press ENTER to clear screen"
     getch (ch)
     cls
 end clearScreen
+% Finished Setting up Procedure
 
 % Setting Intergers
 total_students := 1
@@ -322,6 +324,7 @@ loop
 
     end loop
 
+    % Reseting Exit Int and Counter
     ext := 0
     j := 1
 
