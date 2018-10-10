@@ -90,6 +90,7 @@ loop
     sum (i) := 0
     % Finished Setting Conditional Intergers
 
+    % Get Student Number
     loop
 	if i = 51 then
 	    exit
@@ -117,6 +118,7 @@ loop
 	end if
     end loop
 
+    % Get Total Ammount of Tests and Test marks
     loop
 	if ext >= 1 then
 	    exit
@@ -138,10 +140,16 @@ loop
 		    end if
 		    if students (i, 1) = students (e, 1) then
 			d := e
-			put "Which test mark do you want to change for student: ", student (d)
+			put "Which test mark do you want to change for student: ", student (d), ". Enter 9 to exit"
 			get change_mark
 			if strintok (change_mark) = true then
 			    change_mark_int := strint (change_mark)
+			    if change_mark_int = 9 then
+				ext := 2
+				total_students := total_students - 1
+				i := i - 1
+				exit
+			    end if
 			    j := change_mark_int
 			    if change_mark_int > total_marks_int (d) then
 				total_marks_int (d) := total_marks_int (d) + 1
@@ -150,7 +158,7 @@ loop
 				put "You must enter a number between 1 to 6"
 			    elsif j <= 6 then
 				j := j + 1
-				put "Please enter the test ", j - 1, " for student ", student (d), " as a number between 0 to 100."
+				put "Please enter the test ", j - 1, " mark for student ", student (d), " as a number between 0 to 100."
 				get mark
 				if strintok (mark) = true then
 				    students (d, j) := strint (mark)
@@ -189,10 +197,16 @@ loop
 		end if
 		if students (1, 1) = students (2, 1) then
 		    d := 1
-		    put "Which test mark do you want to change for student: ", student (d)
+		    put "Which test mark do you want to change for student: ", student (d), ". Enter 9 to exit"
 		    get change_mark
 		    if strintok (change_mark) = true then
 			change_mark_int := strint (change_mark)
+			if change_mark_int = 9 then
+			    ext := 2
+			    total_students := total_students - 1
+			    i := i - 1
+			    exit
+			end if
 			j := change_mark_int
 			if change_mark_int > total_marks_int (d) then
 			    total_marks_int (d) := total_marks_int (d) + 1
@@ -201,7 +215,7 @@ loop
 			    put "You must enter a number between 1 to 6"
 			elsif j <= 6 then
 			    j := j + 1
-			    put "Please enter the test ", j - 1, " for student ", student (d), " as a number between 0 to 100."
+			    put "Please enter the test ", j - 1, " mark for student ", student (d), " as a number between 0 to 100."
 			    get mark
 			    if strintok (mark) = true then
 				students (d, j) := strint (mark)
@@ -245,7 +259,7 @@ loop
 			ext := 1
 			exit
 		    end if
-		    put "Please enter the test ", j, " for student ", student (i), " as a number between 0 to 100."
+		    put "Please enter the test ", j, " mark for student ", student (i), " as a number between 0 to 100."
 		    get mark
 		    if strintok (mark) = true then
 			j := j + 1
@@ -282,6 +296,7 @@ loop
 	ext := 0
     end if
 
+    % Fill Empty Marks With -1
     loop
 
 	if ext = 2 then
@@ -338,6 +353,7 @@ if i < 51 then
     total_students := total_students - 1
 end if
 
+% Display Table
 for e : 1 .. total_students
     j := 2
     put "   " ..
