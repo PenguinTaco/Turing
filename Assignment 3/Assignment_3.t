@@ -6,7 +6,7 @@
 %                                                                       %
 % PROGRAMMER'S NAME:    Anthony                                         %
 %                                                                       %
-% DATE:                 Sunday, October 06, 2018                        %
+% DATE:                 Tuesday, October 09, 2018                       %
 %                                                                       %
 % PROGRAM NAME:         Student Marks and Average                       %
 %                                                                       %
